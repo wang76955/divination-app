@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><title>Test</title></head><body>
+<div id="output"></div>
+<script src="/js/divination.js"></script>
+<script>
+try {
+  console.log('YAO_NAMES:', YAO_NAMES);
+  console.log('startDivination exists:', typeof startDivination);
+  console.log('displayResult exists:', typeof displayResult);
+  console.log('resetAll exists:', typeof resetAll);
+  // Simulate recording 6 yao
+  for (var i = 0; i < 6; i++) {
+    recordYao([9,8,7,8,7,6][i]);
+  }
+  console.log('After 6 yao, yaoResults:', yaoResults);
+  document.getElementById('output').textContent = 'SUCCESS: ' + yaoResults.join(',');
+} catch(e) {
+  console.error('ERROR:', e.message);
+  document.getElementById('output').textContent = 'ERROR: ' + e.message;
+}
+</script>
+</body></html>

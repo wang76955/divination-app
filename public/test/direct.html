@@ -1,0 +1,36 @@
+
+<html><head><meta charset=UTF-8><title>Test</title></head><body>
+<h2>Direct Test</h2>
+<div id=output></div>
+<div id=lines-section>
+  <h3>测试爻辞渲染</h3>
+  <div id=lines-list></div>
+</div>
+<script>
+var YN = ['初爻','二爻','三爻','四爻','五爻','上爻'];
+var mockLines = [
+  {text:'初九：潜龙勿用。'},
+  {text:'九二：见龙在田，利见大人。'},
+  {text:'九三：君子终日乾乾，夕惕若厉，无咎。'},
+  {text:'九四：或跃在渊，无咎。'},
+  {text:'九五：飞龙在天，利见大人。'},
+  {text:'上九：亢龙有悔。'}
+];
+var lst = document.getElementById('lines-list');
+if (mockLines) {
+  mockLines.forEach(function(line, idx) {
+    var div = document.createElement('div');
+    div.className = 'line-item';
+    var badge = document.createElement('span');
+    badge.className = 'line-badge';
+    badge.textContent = YN[idx];
+    var txt = document.createElement('span');
+    txt.className = 'line-text';
+    txt.textContent = line.text || '';
+    div.appendChild(badge);
+    div.appendChild(txt);
+    lst.appendChild(div);
+  });
+}
+document.getElementById('output').textContent = 'Rendered ' + lst.children.length + ' lines';
+</script></body></html>

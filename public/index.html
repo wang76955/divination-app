@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>周易六爻卜卦</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="container" id="app">
+    <!-- 顶部标题 -->
+    <header class="header">
+      <h1 class="title">周 易 卜 卦</h1>
+      <p class="subtitle">诚心净念 · 三枚铜钱 · 六次成卦</p>
+    </header>
+
+    <!-- 步骤一：准备阶段 -->
+    <section id="step-prepare" class="step active">
+      <div class="altar">
+        <div class="taiji"></div>
+        <div class="incense-burner">
+          <div class="smoke"></div>
+        </div>
+      </div>
+      <div class="prep-text">
+        <h2>起卦准备</h2>
+        <p>请取三枚铜钱（或硬币），双手合握</p>
+        <p>请在下框中输入您所问之事，然后诚心默念</p>
+        <p>心静之后，将三枚铜钱抛于桌面</p>
+      </div>
+      <div class="question-input-area">
+        <label for="question-input" class="question-label">? 所问何事 ?</label>
+        <textarea id="question-input" class="question-input" placeholder="例：问事业前景、问感情发展、问出行吉凶……" rows="3" maxlength="200"></textarea>
+        <div class="question-count"><span id="question-count">0</span>/200</div>
+      </div>
+      <button class="btn-primary" onclick="startDivination()">
+        <span class="btn-text">开始起卦</span>
+      </button>
+    </section>
+
+    <!-- 步骤二：逐爻录入 -->
+    <section id="step-recording" class="step">
+      <div class="progress-bar">
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
+      <div class="question-display" id="question-display-recording" style="display:none">
+        <span class="question-tag">所问：</span>
+        <span class="question-text" id="recording-question-text"></span>
+      </div>
+      <div class="yao-counter">
+        第 <span id="current-yao">一</span> 爻
+        <span class="yao-desc" id="yao-desc">（初爻）</span>
+        <span class="yao-direction">自下而上</span>
+      </div>
+
+      <div class="hexagram-building" id="hexagram-building">
+        <!-- 6个爻位从下往上，先渲染空的 -->
+      </div>
+
+      <div class="coin-selection">
+        <p class="selection-hint">请选择您这次抛掷的结果：</p>
+        <div class="coin-options">
+          <button class="coin-btn" data-value="9" onclick="recordYao(9)">
+            <div class="coin-display">
+              <span class="coin-icon">??????</span>
+              <span class="coin-label">三 正</span>
+            </div>
+            <span class="yao-type yang">老阳 █████</span>
+            <span class="yao-change">? 动爻</span>
+          </button>
+          <button class="coin-btn" data-value="8" onclick="recordYao(8)">
+            <div class="coin-display">
+              <span class="coin-icon">????○</span>
+              <span class="coin-label">两正一反</span>
+            </div>
+            <span class="yao-type yin">少阴 █ █</span>
+          </button>
+          <button class="coin-btn" data-value="7" onclick="recordYao(7)">
+            <div class="coin-display">
+              <span class="coin-icon">??○○</span>
+              <span class="coin-label">一正两反</span>
+            </div>
+            <span class="yao-type yang">少阳 █████</span>
+          </button>
+          <button class="coin-btn" data-value="6" onclick="recordYao(6)">
+            <div class="coin-display">
+              <span class="coin-icon">○○○</span>
+              <span class="coin-label">三 反</span>
+            </div>
+            <span class="yao-type yin">老阴 █ █</span>
+            <span class="yao-change">? 动爻</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="yao-actions">
+        <button class="btn-secondary" onclick="undoYao()" id="btn-undo" style="display:none">撤销上爻</button>
+      </div>
+    </section>
+
+    <!-- 步骤三：解卦结果 -->
+    <section id="step-result" class="step">
+      <div class="result-section">
+        <h2 class="result-title">卜卦结果</h2>
+
+        <!-- 所问之事 -->
+        <div class="asked-question" id="asked-question" style="display:none">
+          <h3 class="section-heading">? 所问之事 ?</h3>
+          <div class="asked-question-content" id="asked-question-content"></div>
+        </div>
+
+        <!-- 本卦 -->
+        <div class="hexagram-result" id="current-hexagram">
+          <h3 class="hexagram-heading">本卦</h3>
+          <div class="hexagram-info">
+            <div class="trigram-group" id="current-trigrams"></div>
+            <div class="hexagram-details">
+              <div class="hexagram-symbol" id="current-symbol"></div>
+              <div class="hexagram-name" id="current-name"></div>
+              <div class="hexagram-judgment" id="current-judgment"></div>
+              <div class="hexagram-image" id="current-image"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 变卦（如果有） -->
+        <div class="hexagram-result" id="future-hexagram" style="display:none">
+          <h3 class="hexagram-heading">变卦 <span class="badge-change">动爻</span></h3>
+          <div class="hexagram-info">
+            <div class="trigram-group" id="future-trigrams"></div>
+            <div class="hexagram-details">
+              <div class="hexagram-symbol" id="future-symbol"></div>
+              <div class="hexagram-name" id="future-name"></div>
+              <div class="hexagram-judgment" id="future-judgment"></div>
+              <div class="hexagram-image" id="future-image"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 爻辞详解 -->
+        <div class="lines-section" id="lines-section">
+          <h3 class="section-heading">爻辞详解</h3>
+          <div class="lines-list" id="lines-list"></div>
+        </div>
+
+        <!-- 现代文解读 -->
+        <div class="modern-section" id="modern-section" style="display:none">
+          <h3 class="section-heading">现代文解读</h3>
+          <div class="modern-content" id="modern-interpretation"></div>
+        </div>
+
+        <!-- 应对方法建议 -->
+        <div class="advice-section" id="advice-section" style="display:none">
+          <h3 class="section-heading">应对方法建议</h3>
+          <div class="advice-content" id="advice-content"></div>
+        </div>
+
+        <!-- 卦象分析（结合所问之事） -->
+        <div class="analysis-section" id="analysis-section" style="display:none">
+          <h3 class="section-heading">? 卦象总览 ?</h3>
+          <div class="analysis-content" id="analysis-content"></div>
+        </div>
+
+        <!-- 静卦提示 -->
+        <div class="pure-hexagram" id="pure-indicator" style="display:none">
+          <p>此卦六爻不动，为<b>静卦</b>。</p>
+          <p>以本卦卦辞为占，宜静守，不宜妄动。</p>
+        </div>
+      </div>
+
+      <div class="result-actions">
+        <button class="btn-primary" onclick="resetAll()">
+          <span class="btn-text">重新卜卦</span>
+        </button>
+      </div>
+    </section>
+  </div>
+
+  <script src="/js/divination.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>
