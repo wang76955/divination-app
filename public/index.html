@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ÖÜÒ×ÁùØ³²·ØÔ</title>
+  <title>å‘¨æ˜“å…­çˆ»åœå¦</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
@@ -11,13 +11,11 @@
 </head>
 <body>
   <div class="container" id="app">
-    <!-- ¶¥²¿±êÌâ -->
     <header class="header">
-      <h1 class="title">ÖÜ Ò× ²· ØÔ</h1>
-      <p class="subtitle">³ÏÐÄ¾»Äî ¡¤ ÈýÃ¶Í­Ç® ¡¤ Áù´Î³ÉØÔ</p>
+      <h1 class="title">å‘¨ æ˜“ åœ å¦</h1>
+      <p class="subtitle">è¯šå¿ƒå‡€å¿µ Â· ä¸‰æžšé“œé’± Â· å…­æ¬¡æˆå¦</p>
     </header>
 
-    <!-- ²½ÖèÒ»£º×¼±¸½×¶Î -->
     <section id="step-prepare" class="step active">
       <div class="altar">
         <div class="taiji"></div>
@@ -26,95 +24,90 @@
         </div>
       </div>
       <div class="prep-text">
-        <h2>ÆðØÔ×¼±¸</h2>
-        <p>ÇëÈ¡ÈýÃ¶Í­Ç®£¨»òÓ²±Ò£©£¬Ë«ÊÖºÏÎÕ</p>
-        <p>ÇëÔÚÏÂ¿òÖÐÊäÈëÄúËùÎÊÖ®ÊÂ£¬È»ºó³ÏÐÄÄ¬Äî</p>
-        <p>ÐÄ¾²Ö®ºó£¬½«ÈýÃ¶Í­Ç®Å×ÓÚ×ÀÃæ</p>
+        <h2>èµ·å¦å‡†å¤‡</h2>
+        <p>è¯·å–ä¸‰æžšé“œé’±ï¼ˆæˆ–ç¡¬å¸ï¼‰ï¼ŒåŒæ‰‹åˆæ¡</p>
+        <p>è¯·åœ¨ä¸‹æ¡†ä¸­è¾“å…¥æ‚¨æ‰€é—®ä¹‹äº‹ï¼Œç„¶åŽè¯šå¿ƒé»˜å¿µ</p>
+        <p>å¿ƒé™ä¹‹åŽï¼Œå°†ä¸‰æžšé“œé’±æŠ›äºŽæ¡Œé¢</p>
       </div>
       <div class="question-input-area">
-        <label for="question-input" class="question-label">? ËùÎÊºÎÊÂ ?</label>
-        <textarea id="question-input" class="question-input" placeholder="Àý£ºÎÊÊÂÒµÇ°¾°¡¢ÎÊ¸ÐÇé·¢Õ¹¡¢ÎÊ³öÐÐ¼ªÐ×¡­¡­" rows="3" maxlength="200"></textarea>
+        <label for="question-input" class="question-label">âœ§ æ‰€é—®ä½•äº‹ âœ§</label>
+        <textarea id="question-input" class="question-input" placeholder="ä¾‹ï¼šé—®äº‹ä¸šå‰æ™¯ã€é—®æ„Ÿæƒ…å‘å±•ã€é—®å‡ºè¡Œå‰å‡¶â€¦â€¦" rows="3" maxlength="200"></textarea>
         <div class="question-count"><span id="question-count">0</span>/200</div>
       </div>
       <button class="btn-primary" onclick="startDivination()">
-        <span class="btn-text">¿ªÊ¼ÆðØÔ</span>
+        <span class="btn-text">å¼€å§‹èµ·å¦</span>
       </button>
     </section>
 
-    <!-- ²½Öè¶þ£ºÖðØ³Â¼Èë -->
     <section id="step-recording" class="step">
       <div class="progress-bar">
         <div class="progress-fill" id="progress-fill"></div>
       </div>
       <div class="question-display" id="question-display-recording" style="display:none">
-        <span class="question-tag">ËùÎÊ£º</span>
+        <span class="question-tag">æ‰€é—®ï¼š</span>
         <span class="question-text" id="recording-question-text"></span>
       </div>
       <div class="yao-counter">
-        µÚ <span id="current-yao">Ò»</span> Ø³
-        <span class="yao-desc" id="yao-desc">£¨³õØ³£©</span>
-        <span class="yao-direction">×ÔÏÂ¶øÉÏ</span>
+        ç¬¬ <span id="current-yao">ä¸€</span> çˆ»
+        <span class="yao-desc" id="yao-desc">ï¼ˆåˆçˆ»ï¼‰</span>
+        <span class="yao-direction">è‡ªä¸‹è€Œä¸Š</span>
       </div>
 
       <div class="hexagram-building" id="hexagram-building">
-        <!-- 6¸öØ³Î»´ÓÏÂÍùÉÏ£¬ÏÈäÖÈ¾¿ÕµÄ -->
       </div>
 
       <div class="coin-selection">
-        <p class="selection-hint">ÇëÑ¡ÔñÄúÕâ´ÎÅ×ÖÀµÄ½á¹û£º</p>
+        <p class="selection-hint">è¯·é€‰æ‹©æ‚¨è¿™æ¬¡æŠ›æŽ·çš„ç»“æžœï¼š</p>
         <div class="coin-options">
           <button class="coin-btn" data-value="9" onclick="recordYao(9)">
             <div class="coin-display">
-              <span class="coin-icon">??????</span>
-              <span class="coin-label">Èý Õý</span>
+              <span class="coin-icon">ðŸª™ðŸª™ðŸª™</span>
+              <span class="coin-label">ä¸‰ æ­£</span>
             </div>
-            <span class="yao-type yang">ÀÏÑô ¨€¨€¨€¨€¨€</span>
-            <span class="yao-change">? ¶¯Ø³</span>
+            <span class="yao-type yang">è€é˜³ â–ˆâ–ˆâ–ˆâ–ˆâ–ˆ</span>
+            <span class="yao-change">âš¡ åŠ¨çˆ»</span>
           </button>
           <button class="coin-btn" data-value="8" onclick="recordYao(8)">
             <div class="coin-display">
-              <span class="coin-icon">????¡ð</span>
-              <span class="coin-label">Á½ÕýÒ»·´</span>
+              <span class="coin-icon">ðŸª™ðŸª™â—‹</span>
+              <span class="coin-label">ä¸¤æ­£ä¸€å</span>
             </div>
-            <span class="yao-type yin">ÉÙÒõ ¨€ ¨€</span>
+            <span class="yao-type yin">å°‘é˜´ â–ˆ â–ˆ</span>
           </button>
           <button class="coin-btn" data-value="7" onclick="recordYao(7)">
             <div class="coin-display">
-              <span class="coin-icon">??¡ð¡ð</span>
-              <span class="coin-label">Ò»ÕýÁ½·´</span>
+              <span class="coin-icon">ðŸª™â—‹â—‹</span>
+              <span class="coin-label">ä¸€æ­£ä¸¤å</span>
             </div>
-            <span class="yao-type yang">ÉÙÑô ¨€¨€¨€¨€¨€</span>
+            <span class="yao-type yang">å°‘é˜³ â–ˆâ–ˆâ–ˆâ–ˆâ–ˆ</span>
           </button>
           <button class="coin-btn" data-value="6" onclick="recordYao(6)">
             <div class="coin-display">
-              <span class="coin-icon">¡ð¡ð¡ð</span>
-              <span class="coin-label">Èý ·´</span>
+              <span class="coin-icon">â—‹â—‹â—‹</span>
+              <span class="coin-label">ä¸‰ å</span>
             </div>
-            <span class="yao-type yin">ÀÏÒõ ¨€ ¨€</span>
-            <span class="yao-change">? ¶¯Ø³</span>
+            <span class="yao-type yin">è€é˜´ â–ˆ â–ˆ</span>
+            <span class="yao-change">âš¡ åŠ¨çˆ»</span>
           </button>
         </div>
       </div>
 
       <div class="yao-actions">
-        <button class="btn-secondary" onclick="undoYao()" id="btn-undo" style="display:none">³·ÏúÉÏØ³</button>
+        <button class="btn-secondary" onclick="undoYao()" id="btn-undo" style="display:none">æ’¤é”€ä¸Šçˆ»</button>
       </div>
     </section>
 
-    <!-- ²½ÖèÈý£º½âØÔ½á¹û -->
     <section id="step-result" class="step">
       <div class="result-section">
-        <h2 class="result-title">²·ØÔ½á¹û</h2>
+        <h2 class="result-title">åœå¦ç»“æžœ</h2>
 
-        <!-- ËùÎÊÖ®ÊÂ -->
         <div class="asked-question" id="asked-question" style="display:none">
-          <h3 class="section-heading">? ËùÎÊÖ®ÊÂ ?</h3>
+          <h3 class="section-heading">âœ§ æ‰€é—®ä¹‹äº‹ âœ§</h3>
           <div class="asked-question-content" id="asked-question-content"></div>
         </div>
 
-        <!-- ±¾ØÔ -->
         <div class="hexagram-result" id="current-hexagram">
-          <h3 class="hexagram-heading">±¾ØÔ</h3>
+          <h3 class="hexagram-heading">æœ¬å¦</h3>
           <div class="hexagram-info">
             <div class="trigram-group" id="current-trigrams"></div>
             <div class="hexagram-details">
@@ -126,9 +119,8 @@
           </div>
         </div>
 
-        <!-- ±äØÔ£¨Èç¹ûÓÐ£© -->
         <div class="hexagram-result" id="future-hexagram" style="display:none">
-          <h3 class="hexagram-heading">±äØÔ <span class="badge-change">¶¯Ø³</span></h3>
+          <h3 class="hexagram-heading">å˜å¦ <span class="badge-change">åŠ¨çˆ»</span></h3>
           <div class="hexagram-info">
             <div class="trigram-group" id="future-trigrams"></div>
             <div class="hexagram-details">
@@ -140,40 +132,35 @@
           </div>
         </div>
 
-        <!-- Ø³´ÇÏê½â -->
         <div class="lines-section" id="lines-section">
-          <h3 class="section-heading">Ø³´ÇÏê½â</h3>
+          <h3 class="section-heading">çˆ»è¾žè¯¦è§£</h3>
           <div class="lines-list" id="lines-list"></div>
         </div>
 
-        <!-- ÏÖ´úÎÄ½â¶Á -->
         <div class="modern-section" id="modern-section" style="display:none">
-          <h3 class="section-heading">ÏÖ´úÎÄ½â¶Á</h3>
+          <h3 class="section-heading">çŽ°ä»£æ–‡è§£è¯»</h3>
           <div class="modern-content" id="modern-interpretation"></div>
         </div>
 
-        <!-- Ó¦¶Ô·½·¨½¨Òé -->
         <div class="advice-section" id="advice-section" style="display:none">
-          <h3 class="section-heading">Ó¦¶Ô·½·¨½¨Òé</h3>
+          <h3 class="section-heading">åº”å¯¹æ–¹æ³•å»ºè®®</h3>
           <div class="advice-content" id="advice-content"></div>
         </div>
 
-        <!-- ØÔÏó·ÖÎö£¨½áºÏËùÎÊÖ®ÊÂ£© -->
         <div class="analysis-section" id="analysis-section" style="display:none">
-          <h3 class="section-heading">? ØÔÏó×ÜÀÀ ?</h3>
+          <h3 class="section-heading">âœ¦ å¦è±¡æ€»è§ˆ âœ¦</h3>
           <div class="analysis-content" id="analysis-content"></div>
         </div>
 
-        <!-- ¾²ØÔÌáÊ¾ -->
         <div class="pure-hexagram" id="pure-indicator" style="display:none">
-          <p>´ËØÔÁùØ³²»¶¯£¬Îª<b>¾²ØÔ</b>¡£</p>
-          <p>ÒÔ±¾ØÔØÔ´ÇÎªÕ¼£¬ÒË¾²ÊØ£¬²»ÒËÍý¶¯¡£</p>
+          <p>æ­¤å¦å…­çˆ»ä¸åŠ¨ï¼Œä¸º<b>é™å¦</b>ã€‚</p>
+          <p>ä»¥æœ¬å¦å¦è¾žä¸ºå ï¼Œå®œé™å®ˆï¼Œä¸å®œå¦„åŠ¨ã€‚</p>
         </div>
       </div>
 
       <div class="result-actions">
         <button class="btn-primary" onclick="resetAll()">
-          <span class="btn-text">ÖØÐÂ²·ØÔ</span>
+          <span class="btn-text">é‡æ–°åœå¦</span>
         </button>
       </div>
     </section>
